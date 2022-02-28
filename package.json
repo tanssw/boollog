@@ -1,0 +1,8 @@
+{
+  "name": "boollog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tanssw/boollog.git",
+  "author": "Tasanai Srisawat <tasanai.srisawat@gmail.com>",
+  "license": "MIT"
+}
