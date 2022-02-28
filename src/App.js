@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
+
 import Homepage from './pages/home/Homepage'
+import Posts from './pages/posts/Posts'
 
 import NavigationBar from './templates/NavigationBar'
 
@@ -9,6 +11,7 @@ function App() {
             <NavigationBar />
             <Routes>
                 <Route path="/" element={<Homepage />} />
+                <Route path="/posts" element={<Posts />} />
             </Routes>
         </div>
     )
