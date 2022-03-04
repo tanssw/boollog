@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import './post.css'
+import CommentPanel from './components/CommentPanel'
 
 function Post() {
 
@@ -23,17 +23,21 @@ function Post() {
     )
 
     return (
-        <div className="container mx-auto px-8 py-12">
-            <div className="text-5xl font-bold">
-                {post.title.rendered}
-            </div>
-            <div className="grid grid-cols-5 gap-8">
-                <div className="col-span-3">
-                    <div id="post-content" dangerouslySetInnerHTML={{__html: post.content.rendered}}></div>
+        <>
+            <div className="container mx-auto px-8 py-12">
+                <div>
+                    <div className="text-5xl font-bold mb-8">
+                        {post.title.rendered}
+                    </div>
+                    <div dangerouslySetInnerHTML={{__html: post.content.rendered}} className="prose dark:prose-invert prose-img:rounded-lg max-w-none"></div>
                 </div>
-                <div className="col-span-2"></div>
             </div>
-        </div>
+            <div className="dark:bg-gray-800">
+                <div className="container mx-auto px-8 py-12">
+                    <CommentPanel />
+                </div>
+            </div>
+        </>
     )
 }
 
