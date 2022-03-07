@@ -23,8 +23,6 @@ function PostAuthor(props) {
         return 'Anonymous'
     }
 
-    console.log(author)
-
     // If post is not loaded correctly
     if (!Object.keys(author).length) return (
         <div></div>
