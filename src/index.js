@@ -7,7 +7,7 @@ import './index.css'
 
 ReactDOM.render(
     <StrictMode>
-        <BrowserRouter>
+        <BrowserRouter basename="/boollog">
             <App />
         </BrowserRouter>
     </StrictMode>,
