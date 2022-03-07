@@ -24,7 +24,7 @@ function Post() {
 
     return (
         <>
-            <div className="container mx-auto px-8 py-12">
+            <div className="container mx-auto px-56 py-12">
                 <div>
                     <div className="text-5xl font-bold mb-8">
                         {post.title.rendered}
@@ -33,7 +33,7 @@ function Post() {
                 </div>
             </div>
             <div className="dark:bg-gray-800">
-                <div className="container mx-auto px-8 py-12">
+                <div className="container mx-auto px-56 py-12">
                     <CommentPanel />
                 </div>
             </div>

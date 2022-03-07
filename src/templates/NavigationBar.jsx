@@ -15,15 +15,12 @@ function NavigationBar() {
 
     return (
         <div className="">
-            <div className="container mx-auto px-8 py-4 flex justify-between items-center">
+            <div className="container mx-auto px-56 py-4 flex justify-between items-center">
                 <Link to="/" className="text-2xl">
                     boollog
                 </Link>
                 <div>
                     <Navigators />
-                    <Link to="/create" className="ml-8 dark:bg-sky-300 dark:hover:bg-sky-400 duration-100 dark:text-gray-900 px-4 py-2 rounded-lg">
-                        Create
-                    </Link>
                 </div>
             </div>
         </div>

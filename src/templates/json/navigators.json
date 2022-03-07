@@ -6,5 +6,9 @@
     {
         "title": "Posts",
         "path": "/posts"
+    },
+    {
+        "title": "Authors",
+        "path": "/authors"
     }
 ]
