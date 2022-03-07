@@ -22,8 +22,8 @@ function CommentPanel() {
     return (
         <>
             <div className="text-2xl mb-4">Comments</div>
-            <CommentInput />
-            {comments.map(comment => <Comment comment={comment} />)}
+            <CommentInput pid={id} />
+            {comments.map(comment => <Comment key={comment.id} comment={comment} />)}
         </>
     )
 }
