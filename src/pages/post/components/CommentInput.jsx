@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 function CommentInput(props) {
 
     let pid = props.pid
+    let onComment = props.onComment
 
     const [row, setRow] = useState(1)
     const [content, setContent] = useState("")
@@ -44,7 +45,9 @@ function CommentInput(props) {
 
         try {
             const result = await axios.post(`https://fswd-wp.devnss.com/wp-json/wp/v2/comments`, body, config)
+            const comment = result.data
             setContent("")
+            onComment(comment)
         } catch (error) {
             setWarning(error.response.data.message)
         }
@@ -53,7 +56,7 @@ function CommentInput(props) {
     return (
         <div className="my-8">
             <div className="bg-gray-700 shadow-lg rounded-lg px-6 py-6">
-                <textarea id="comment-input" onInput={commentHandler} rows={row} placeholder="What is your comment ?" className="w-full focus:outline-none bg-transparent resize-none pt-2 mb-0 font-light"></textarea>
+                <textarea id="comment-input" onInput={commentHandler} value={content} rows={row} placeholder="What is your comment ?" className="w-full focus:outline-none bg-transparent resize-none pt-2 mb-0 font-light"></textarea>
             </div>
             <div className="grid grid-cols-2 mt-4">
                 <div className="text-red-500 font-light">

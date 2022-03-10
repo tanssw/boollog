@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 
 import Comment from './Comment'
@@ -19,10 +19,14 @@ function CommentPanel() {
         getComments()
     }, [])
 
+    const commentHandler = (comment) => {
+        setComments([comment, ...comments])
+    }
+
     return (
         <>
             <div className="text-2xl mb-4">Comments</div>
-            <CommentInput pid={id} />
+            <CommentInput pid={id} onComment={commentHandler} />
             {comments.map(comment => <Comment key={comment.id} comment={comment} />)}
         </>
     )
