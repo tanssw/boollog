@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/boollog/static/css/main.77e863f1.css",
-    "main.js": "/boollog/static/js/main.2789ec33.js",
+    "main.css": "/boollog/static/css/main.765ab520.css",
+    "main.js": "/boollog/static/js/main.21a4136a.js",
     "index.html": "/boollog/index.html",
-    "main.77e863f1.css.map": "/boollog/static/css/main.77e863f1.css.map",
-    "main.2789ec33.js.map": "/boollog/static/js/main.2789ec33.js.map"
+    "main.765ab520.css.map": "/boollog/static/css/main.765ab520.css.map",
+    "main.21a4136a.js.map": "/boollog/static/js/main.21a4136a.js.map"
   },
   "entrypoints": [
-    "static/css/main.77e863f1.css",
-    "static/js/main.2789ec33.js"
+    "static/css/main.765ab520.css",
+    "static/js/main.21a4136a.js"
   ]
 }
