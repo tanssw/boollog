@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-function PostCard(props) {
+function PostHighlight(props) {
 
     const post = props.post
 
@@ -19,27 +19,21 @@ function PostCard(props) {
     
     const PostImage = () => {
         return (
-            <div className="relative h-48 bg-gray-800 rounded-lg overflow-hidden">
+            <div className="relative h-56 bg-gray-800 rounded-t-lg overflow-hidden">
                 <img src={media.source_url} className="absolute w-full inset-0 my-auto" />
             </div>
         )
     }
 
-    const categories = post.categories.map(category => category.name).join(', ')
-
     return (
-        <div className="grid grid-cols-9 gap-12 my-12">
-            <div className="col-span-3">
-                <PostImage />
-            </div>
-            <div className="col-span-6">
-                <div className="text-2xl font-light mb-3">{post.title.rendered}</div>
-                <div className="text-gray-400 font-light">
-                    <div>Category: {categories}</div>
-                </div>
+        <div className="bg-gray-700 shadow-xl rounded-lg flex flex-col">
+            <PostImage />
+            <div className="flex justify-between m-4">
+                <div className="truncate">{post.title.rendered}</div>
+                <Link to={`/post/${post.id}`} className="ml-8 text-sky-300 hover:text-sky-500 duration-100">Read</Link>
             </div>
         </div>
     )
 }
 
-export default PostCard
+export default PostHighlight
