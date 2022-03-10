@@ -25,7 +25,7 @@ function Posts() {
     }
     
     return (
-        <div className="container mx-auto p-8 py-12">
+        <div className="container mx-auto px-56 py-12">
             <PostList />
         </div>
     )
