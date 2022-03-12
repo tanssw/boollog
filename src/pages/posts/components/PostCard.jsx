@@ -28,17 +28,17 @@ function PostCard(props) {
     const categories = post.categories.map(category => category.name).join(', ')
 
     return (
-        <div className="grid grid-cols-9 gap-12 my-12">
+        <Link to={`/post/${post.id}`} className="group grid grid-cols-9 gap-12 my-12">
             <div className="col-span-3">
                 <PostImage />
             </div>
             <div className="col-span-6">
-                <div className="text-2xl font-light mb-3">{post.title.rendered}</div>
+                <div className="group-hover:underline underline-offset-2 text-2xl font-light mb-3">{post.title.rendered}</div>
                 <div className="text-gray-400 font-light">
                     <div>Category: {categories}</div>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
