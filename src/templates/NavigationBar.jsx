@@ -1,14 +1,26 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
 import navigators from './json/navigators.json'
 
 function NavigationBar() {
 
+    const location = useLocation()
+
+    const [currentLocation, setCurrentLocation] = useState("")
+
+    useEffect(() => {
+        setCurrentLocation(location.pathname)
+    }, [location])
+
     const Navigators = () => {
         return navigators.map((navigator, index) => {
+            let isActive = navigator.path === currentLocation
+            let active = isActive ? 'font-bold ' : 'font-light text-slate-200 '
             let marginLeft = index ? 'ml-8 ' : ''
+            console.log(isActive, location, navigator.path, active)
             return (
-                <Link key={index} to={navigator.path} className={`${marginLeft}hover:text-slate-600 duration-100`}>{navigator.title}</Link>
+                <Link key={index} to={navigator.path} className={`${active}${marginLeft}hover:text-slate-600 duration-100`}>{navigator.title}</Link>
             )
         })
     }
