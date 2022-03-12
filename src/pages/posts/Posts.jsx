@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams, useLocation } from 'react-router-dom'
 
 import PostHighlight from './components/PostHighlight'
 import PostCard from './components/PostCard'
@@ -8,6 +8,7 @@ import CategoryButton from './components/CategoryButton'
 
 function Posts() {
 
+    const location = useLocation()
     const [params] = useSearchParams()
     
     const [highlights, setHighlights] = useState([])
@@ -43,22 +44,24 @@ function Posts() {
             setPosts(postResult.slice(5))
         }
 
-        const initPosts = async () => {
-            
-            await getCategories()
-            await getPosts()
-            
-            // Set active category from query params
+        // Set active category from query params
+        const setActiveCategoryByQuery = () => {
             let queryCategory = params.get('category')
+            if (!queryCategory) return setActiveCategory(null)
             let queryCategoryObject = tempCategories.find(category => category.slug === queryCategory)
             queryCategoryObject.active = true
             setActiveCategory(queryCategoryObject)
+        }
 
+        const initPosts = async () => {
+            await getCategories()
+            await getPosts()
+            setActiveCategoryByQuery()
         }
 
         initPosts()
 
-    }, [])
+    }, [location])
 
     const selectHandler = (selectedCategory) => {
         categories.forEach(category => {
@@ -69,6 +72,11 @@ function Posts() {
         setActiveCategory(selectedCategory)
         setCategories([...categories])
     }
+
+    const renderFilteredPosts = posts.map(post => {
+        let matchedCategory = activeCategory ? !!post.categories.find(category => category.id === activeCategory.id) : true
+        if (matchedCategory) return <PostCard key={post.id} post={post} />
+    })
 
     if (!categories.length && !posts.length) return <></>
     
@@ -84,7 +92,7 @@ function Posts() {
                 {categories.map(category => <CategoryButton key={category.id} category={category} onSelect={selectHandler} />)}
             </div>
             <div>
-                {posts.map(post => <PostCard key={post.id} post={post} />)}
+                {renderFilteredPosts}
             </div>
         </div>
     )
