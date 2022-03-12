@@ -26,13 +26,12 @@ function PostHighlight(props) {
     }
 
     return (
-        <div className="bg-gray-700 shadow-xl rounded-lg flex flex-col">
+        <Link to={`/post/${post.id}`} className="bg-gray-700 shadow-xl rounded-lg flex flex-col hover:scale-105 duration-150">
             <PostImage />
             <div className="flex justify-between m-4">
                 <div className="truncate">{post.title.rendered}</div>
-                <Link to={`/post/${post.id}`} className="ml-8 text-sky-300 hover:text-sky-500 duration-100">Read</Link>
             </div>
-        </div>
+        </Link>
     )
 }
 
