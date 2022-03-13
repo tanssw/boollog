@@ -1,4 +1,5 @@
 import axios from 'axios'
+import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -35,7 +36,8 @@ function PostCard(props) {
             <div className="col-span-6">
                 <div className="group-hover:underline underline-offset-2 text-2xl font-light mb-3">{post.title.rendered}</div>
                 <div className="text-gray-400 font-light">
-                    <div>Category: {categories}</div>
+                    <div className="mb-1">Category: {categories}</div>
+                    <div>{dayjs(post.date).format('DD MMM YYYY — hh:mm')}</div>
                 </div>
             </div>
         </Link>

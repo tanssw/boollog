@@ -1,4 +1,5 @@
 import axios from 'axios'
+import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -25,11 +26,17 @@ function PostHighlight(props) {
         )
     }
 
+    const categories = post.categories.map(category => category.name).join(', ')
+
     return (
         <Link to={`/post/${post.id}`} className="bg-gray-700 shadow-xl rounded-lg flex flex-col hover:scale-105 duration-150">
             <PostImage />
-            <div className="flex justify-between m-4">
-                <div className="truncate">{post.title.rendered}</div>
+            <div className="m-4">
+                <div className="truncate mb-1">{post.title.rendered}</div>
+                <div className="flex justify-between text-sm text-gray-400 font-light">
+                    <div className="truncate">category: {categories}</div>
+                    <div>{dayjs(post.date).format('DD MMM YYYY — hh:mm')}</div>
+                </div>
             </div>
         </Link>
     )
