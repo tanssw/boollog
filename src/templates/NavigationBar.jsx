@@ -18,7 +18,6 @@ function NavigationBar() {
             let isActive = navigator.path === currentLocation
             let active = isActive ? 'font-bold ' : 'font-light text-slate-200 '
             let marginLeft = index ? 'ml-8 ' : ''
-            console.log(isActive, location, navigator.path, active)
             return (
                 <Link key={index} to={navigator.path} className={`${active}${marginLeft}hover:text-slate-600 duration-100`}>{navigator.title}</Link>
             )
