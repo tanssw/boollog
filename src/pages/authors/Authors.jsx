@@ -29,7 +29,7 @@ function Authors() {
     if (!authors.length) return <LoadSpinner />
 
     return (
-        <div className="container mx-auto px-56 py-12">
+        <div className="container mx-auto px-8 2xl:px-56 py-12">
             <div className="grid grid-cols-3 gap-8">
                 {authors.map(author => <AuthorCard author={author} />)}
             </div>

@@ -26,7 +26,7 @@ function NavigationBar() {
 
     return (
         <div className="">
-            <div className="container mx-auto px-56 py-4 flex justify-between items-center">
+            <div className="container mx-auto px-8 2xl:px-56 py-4 flex justify-between items-center">
                 <Link to="/" className="text-2xl">
                     boollog
                 </Link>

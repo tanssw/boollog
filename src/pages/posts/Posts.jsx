@@ -106,7 +106,7 @@ function Posts() {
     if (!categories.length && !posts.length) return <LoadSpinner />
     
     return (
-        <div className="container mx-auto px-56 py-12">
+        <div className="container mx-auto px-8 2xl:px-56 py-12">
             <div className="text-3xl text-center uppercase font-bold mb-12">Latest Posts</div>
             <div className="grid grid-cols-2 gap-12">
                 {highlights.map(highlight => <PostHighlight key={highlight.id} post={highlight} />)}
