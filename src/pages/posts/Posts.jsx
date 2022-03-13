@@ -6,6 +6,9 @@ import PostHighlight from './components/PostHighlight'
 import PostCard from './components/PostCard'
 import CategoryButton from './components/CategoryButton'
 
+import LoadSpinner from '../../components/LoadSpinner'
+import ErrorMessage from '../../components/ErrorMessage'
+
 function Posts() {
 
     const location = useLocation()
@@ -17,46 +20,64 @@ function Posts() {
     const [categories, setCategories] = useState([])
     const [activeCategory, setActiveCategory] = useState(null)
 
+    const [isError, setIsError] = useState(false)
+
     useEffect(() => {
 
         let tempCategories = []
 
         const getCategories = async () => {
-            const result = await axios.get(`https://fswd-wp.devnss.com/wp-json/wp/v2/categories`)
-            tempCategories = result.data.map(category => {
-                category.active = false
-                return category
-            })
-            setCategories(tempCategories)
+            try {
+                const result = await axios.get(`https://fswd-wp.devnss.com/wp-json/wp/v2/categories`)
+                tempCategories = result.data.map(category => {
+                    category.active = false
+                    return category
+                })
+                setCategories(tempCategories)
+            } catch (error) {
+                throw error
+            }
         }
 
         const getPosts = async () => {
-            const result = await axios.get('https://fswd-wp.devnss.com/wp-json/wp/v2/posts')
-            let postResult = result.data
-
-            // Mapping from category id to its object
-            postResult = postResult.map(post => {
-                post.categories = post.categories.map(cid => tempCategories.find(category => category.id === cid))
-                return post
-            })
-
-            setHighlights(postResult.slice(0, 4))
-            setPosts(postResult.slice(5))
+            try {
+                const result = await axios.get('https://fswd-wp.devnss.com/wp-json/wp/v2/posts')
+                let postResult = result.data
+    
+                // Mapping from category id to its object
+                postResult = postResult.map(post => {
+                    post.categories = post.categories.map(cid => tempCategories.find(category => category.id === cid))
+                    return post
+                })
+    
+                setHighlights(postResult.slice(0, 4))
+                setPosts(postResult.slice(5))
+            } catch (error) {
+                throw error
+            }
         }
 
         // Set active category from query params
         const setActiveCategoryByQuery = () => {
-            let queryCategory = params.get('category')
-            if (!queryCategory) return setActiveCategory(null)
-            let queryCategoryObject = tempCategories.find(category => category.slug === queryCategory)
-            queryCategoryObject.active = true
-            setActiveCategory(queryCategoryObject)
+            try {
+                let queryCategory = params.get('category')
+                if (!queryCategory) return setActiveCategory(null)
+                let queryCategoryObject = tempCategories.find(category => category.slug === queryCategory)
+                queryCategoryObject.active = true
+                setActiveCategory(queryCategoryObject)
+            } catch (error) {
+                throw error
+            }
         }
 
         const initPosts = async () => {
-            await getCategories()
-            await getPosts()
-            setActiveCategoryByQuery()
+            try {
+                await getCategories()
+                await getPosts()
+                setActiveCategoryByQuery()
+            } catch (error) {
+                setIsError(true)
+            }
         }
 
         initPosts()
@@ -78,7 +99,11 @@ function Posts() {
         if (matchedCategory) return <PostCard key={post.id} post={post} />
     })
 
-    if (!categories.length && !posts.length) return <></>
+    // On erorr occured, show error message
+    if (isError) return <ErrorMessage />
+
+    // On loading, show load spinner
+    if (!categories.length && !posts.length) return <LoadSpinner />
     
     return (
         <div className="container mx-auto px-56 py-12">
