@@ -29,7 +29,7 @@ function Post() {
             <div className="container mx-auto px-8 2xl:px-56 py-12">
                 <div>
                     <div className="mb-12">
-                        <div className="text-5xl font-bold mb-12">{post.title.rendered}</div>
+                        <div className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-12">{post.title.rendered}</div>
                         <PostAuthor aid={post.author} date={post.date} />
                     </div>
                     <div dangerouslySetInnerHTML={{__html: post.content.rendered}} className="prose dark:prose-invert prose-img:rounded-lg max-w-none"></div>

@@ -108,13 +108,13 @@ function Posts() {
     return (
         <div className="container mx-auto px-8 2xl:px-56 py-12">
             <div className="text-3xl text-center uppercase font-bold mb-12">Latest Posts</div>
-            <div className="grid grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {highlights.map(highlight => <PostHighlight key={highlight.id} post={highlight} />)}
             </div>
             <hr className="my-12 border-gray-600" />
             <div className="flex flex-nowrap overflow-x-scroll no-scrollbar -mx-2">
                 <Link onClick={() => {selectHandler(null)}} to="/posts" className={`${activeCategory ? 'bg-gray-800' : 'bg-gray-600'} text-sm font-light px-6 py-2 rounded-full mx-2`}>All</Link>
-                <div className="bg-gray-700 w-0.5 mx-4"></div>
+                <div className="bg-gray-700 w-0.5 lg:mx-4"></div>
                 {categories.map(category => <CategoryButton key={category.id} category={category} onSelect={selectHandler} />)}
             </div>
             <div>
