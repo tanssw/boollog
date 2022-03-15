@@ -32,6 +32,17 @@ function Author() {
     return (
         <div className="container mx-auto px-8 2xl:px-56 py-12">
             <div>
+                <div className="flex items-center">
+                    <img src={author.avatar_urls['96']} alt="Author's Profile Image" className="rounded-full w-16 h-16 mr-6" />
+                    <div>
+                        <div className="font-bold text-xl dark:text-blue-300">
+                            {author.name}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr className="my-12 border-gray-700" />
+            <div>
                 <div className="text-2xl font-bold mb-6">Created Posts</div>
                 <div className="grid grid-cols-3 gap-8">
                     {posts.map(post => <PostHighlight key={post.id} post={post} />)}
