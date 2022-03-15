@@ -31,7 +31,7 @@ function Authors() {
     return (
         <div className="container mx-auto px-8 2xl:px-56 py-12">
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-                {authors.map(author => <AuthorCard author={author} />)}
+                {authors.map(author => <AuthorCard key={author.id} author={author} />)}
             </div>
         </div>
     )

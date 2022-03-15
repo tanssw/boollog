@@ -4,6 +4,7 @@ import Homepage from './pages/home/Homepage'
 import Posts from './pages/posts/Posts'
 import Post from './pages/post/Post'
 import Authors from './pages/authors/Authors'
+import Author from './pages/author/Author'
 
 import NavigationBar from './templates/NavigationBar'
 
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/posts" element={<Posts />} />
                 <Route path="/post/:id" element={<Post />} />
                 <Route path="/authors" element={<Authors />} />
+                <Route path="/author/:id" element={<Author />} />
             </Routes>
         </div>
     )
