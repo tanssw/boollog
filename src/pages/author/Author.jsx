@@ -44,7 +44,7 @@ function Author() {
             <hr className="my-12 border-gray-700" />
             <div>
                 <div className="text-2xl font-bold mb-6">Created Posts</div>
-                <div className="grid grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
                     {posts.map(post => <PostHighlight key={post.id} post={post} />)}
                 </div>
             </div>
